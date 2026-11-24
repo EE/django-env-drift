@@ -1,0 +1,50 @@
+[project]
+name = "django-env-drift"
+version = "0.1.0"
+description = "List the environment variables a Django deployment sets but its settings never read: what is left behind by a removed or renamed setting."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10,<4"
+dependencies = [
+    "django (>=4.2,<7.0)",
+    "django-environ (>=0.11)",
+]
+keywords = ["django", "environment", "configuration", "twelve-factor", "heroku"]
+classifiers = [
+    "Framework :: Django",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Repository = "https://github.com/EE/django-env-drift"
+
+[tool.poetry]
+packages = [{ include = "django_env_drift" }]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "*"
+pytest-django = "*"
+flake8 = "*"
+flake8-isort = "*"
+flake8-pyproject = "*"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "testproject.settings"
+pythonpath = ["."]
+python_files = ["*_tests.py"]
+
+[tool.flake8]
+max-line-length = 120
+
+[tool.isort]
+skip_gitignore = true
+lines_after_imports = 2
+# 5 = Hanging Grid Grouped
+multi_line_output = 5
+include_trailing_comma = true
+line_length = 120
+
+[build-system]
+requires = ["poetry-core>=2.0"]
+build-backend = "poetry.core.masonry.api"
